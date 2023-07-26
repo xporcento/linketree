@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "link-tree"
+version = "0.1.0"
+description = ""
+authors = ["Jhony Lima <114432490+Jhonylsab@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "link_tree"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pillow = "^10.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
