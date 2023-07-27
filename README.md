@@ -13,39 +13,6 @@
 
 # Tutorial de Configuração do Projeto
 
-## 1. Configurar ambiente
-
-Nesta seção, vamos configurar o ambiente de desenvolvimento para o projeto. Você pode incluir instruções sobre a instalação de um ambiente virtual, configuração de variáveis de ambiente e outras dependências necessárias.
-
-## 2. Instalar pacotes
-
-Aqui, vamos listar os pacotes e bibliotecas específicas que precisam ser instalados para o projeto. Inclua os comandos de instalação, por exemplo, usando pip ou conda.
-
-## 3. Referências do Streamlit
-
-Nesta parte, você pode incluir links para documentação, tutoriais ou recursos relevantes sobre o Streamlit. Isso ajudará a equipe a aprender e entender como usar o Streamlit para criar a aplicação.
-
-## 4. Uso do Github no projeto
-
-Nesta seção, explique como a equipe pode utilizar o GitHub para colaborar no projeto. Você pode abordar tópicos como controle de versão, criação de branches, fluxo de trabalho de pull requests, entre outros.
-
-## 5. Deploy no Streamlit
-
-Aqui, você pode descrever como realizar o deploy da aplicação Streamlit em um ambiente de produção. Inclua etapas como configuração de servidores, ajustes finos de desempenho e segurança, e qualquer outra informação relevante.
-
-## 6. Desenvolvendo em equipe no Github
-
-Nesta seção, você pode fornecer orientações sobre como a equipe pode colaborar de forma eficiente no desenvolvimento do projeto usando o GitHub. Inclua práticas recomendadas, como comunicação, revisão de código e gerenciamento de problemas.
-
-
-
-
-
-
-
-
-
-
 ##  1 - Configuração de ambiente
 
 - Fazer download e instalar a ferramenta [Python](https://www.python.org/downloads/). Instale o interpretador Python 3 em seu computador. Este é o programa que lê programas em Python e executa suas instruções
@@ -92,7 +59,31 @@ st_button('youtube', 'https://youtube.com/dataprofessor', 'Data Professor YouTub
 
 ## 4 Uso do Github no projeto
 
-- Utilizaremos o GitHub para gerenciar e controlar o projeto.
+- Abra o terminal de comando do seu sistema operacional;
+Dentro da pasta do projeto, digite: `git init`
+O comando acima irá criar toda a estrutura básica do repositório;
+
+- Para adicionar todos os arquivos alterados à fila de atualizações do repositório, execute o comando: `git add`.
+
+- Antes de sincronizar as alterações, configure seu usuário do GitHub com os comandos:
+    `git config --global user.name "seu nome"`
+    `git config --global "email no GitHub"`
+
+- Confirme as alterações com o comando: 
+    `git commit -m "mensagem"` 
+no qual “mensagem” geralmente é um resumo das alterações.
+
+- Adicione o remote, ou seja, o link para o servidor do seu projeto no GitHub:
+    `git remote add origin usuário no GitHub>/<nome do repositório>.git`
+
+- Por fim, envie as alterações com o comando:
+    `git push remote origin`
+
+## 5 Deploy no Streamlit
+
+- Com o repositório criado no GitHub e o projeto estando nele, ir ao [site do streamlit](https://streamlit.io/) e realizar o login no mesmo. 
+- Feito isso, ir em new app, colocar o repositório do GitHub ao qual esta o projeto, selecionar a branch que esta sendo utilizada e dizer qual o arquivo principal do projeto.
+- Após, dar o deploy para o por no ar.
 
 
 
