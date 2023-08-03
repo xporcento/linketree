@@ -1,31 +1,30 @@
-import streamlit as st
+from webbrowser import BackgroundBrowser
 import base64
+import streamlit as st
+
 
 def load_css():
     with open("style.css") as f:
         st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
     st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
+    
     @st.cache_data
-    def get_base64_of_bin_file(bin_file):
-        with open(bin_file, 'rb') as f:
+    def get_img_as_base64(file):
+        with open(file, 'rb') as f:
             data = f.read()
         return base64.b64encode(data).decode()
-
-    def set_png_as_page_bg(jpg_file):
-        bin_str = get_base64_of_bin_file(jpg_file)
-        page_bg_img = '''
-        <style>
-        body {
-        background-image: url("data:XPORCENTO_LOGO-negativo/jpg;base64,%s");
-        background-size: cover;
-        }
-        </style>
-        ''' % bin_str
         
-        st.markdown(page_bg_img, unsafe_allow_html=True)
-        return
+    img = get_img_as_base64("XPORCENTO_LOGO-positivo.jpg")
 
-    set_png_as_page_bg('XPORCENTO_LOGO-negativo.jpg')
+    page_bg_img = f"""
+    <style>
+    [data-testid="stAppViewContainer"] {{
+    Background-image: url("data:image/png;base64,{img}");
+    background-size: center, cover;
+    }}
+    </style>
+    """
+    st.markdown(page_bg_img, unsafe_allow_html=True)
 
 def st_button(icon, url, label, iconsize):
     if icon == 'youtube':
