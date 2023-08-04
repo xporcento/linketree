@@ -10,7 +10,7 @@ col2.image(Image.open('XPORCENTO_LOGO-positivo.jpg'))
 
 st.header('X-PORCENTO')
 
-st.info('Developer Advocate, Content Creator and ex-Professor with an interest in Data Science and Bioinformatics')
+st.info('Somos a melhor em resolver seus problemas com tomada de decisão.')
 
 icon_size = 20
 
