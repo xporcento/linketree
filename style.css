@@ -14,7 +14,6 @@
     background-color: black;
     color: white;
     border-color: white;
-    /*border-color: grey;*/
 }
 
  .btn.btn-outline-primary.btn-lg.btn-block:hover{
@@ -25,6 +24,12 @@
 .css-10trblm.e16nr0p30 {
     font-weight: bold;
     text-align: center;
+}
+
+.css-10trblm.e1nzilvr0 {
+    font-weight: bolder;
+    text-align: center;
+    text-shadow: 1.2px 1.2px white;
 }
 
 p {
