@@ -1,5 +1,5 @@
 from webbrowser import BackgroundBrowser
-import base64
+##import base64
 import streamlit as st
 
 
@@ -7,24 +7,37 @@ def load_css():
     with open("style.css") as f:
         st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
     st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
-    
-    @st.cache_data
-    def get_img_as_base64(file):
-        with open(file, 'rb') as f:
-            data = f.read()
-        return base64.b64encode(data).decode()
-        
-    img = get_img_as_base64("XPORCENTO_LOGO-positivo.jpg")
 
-    page_bg_img = f"""
+    page_bg_img = """
     <style>
-    [data-testid="stAppViewContainer"] {{
-    Background-image: url("data:image/png;base64,{img}");
-    background-size: center, cover;
-    }}
+       [data-testid="stAppViewContainer"] {
+       Background-color: #212121;
+       opacity: 0.8;
+       background: linear-gradient(to bottom, black, white);
+        }
     </style>
     """
-    st.markdown(page_bg_img, unsafe_allow_html=True)
+
+    st.markdown(page_bg_img, unsafe_allow_html= True)
+    
+    ##@st.cache_data
+    ##def get_img_as_base64(file):
+    ##    with open(file, 'rb') as f:
+    ##        data = f.read()
+    ##    return base64.b64encode(data).decode()
+        
+    ##img = get_img_as_base64("XPORCENTO_LOGO-positivo.jpg")
+
+   ## page_bg_img = f"""
+   ## <style>
+    ##[data-testid="stAppViewContainer"] {{
+   ## Background-color: #212121;
+   ## opacity: 0.8;
+   ## background: linear-gradient(90deg, #212121);
+   ## }}
+   ## </style>
+   ## """
+    ##st.markdown(page_bg_img, unsafe_allow_html=True)
 
 def st_button(icon, url, label, iconsize):
     if icon == 'youtube':
