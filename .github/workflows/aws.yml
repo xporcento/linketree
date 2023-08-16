@@ -9,7 +9,7 @@ on:
 jobs:
 
   build:
-
+ 
     runs-on: ubuntu-latest
 
     steps:
@@ -27,6 +27,6 @@ jobs:
       
     - name: Build the Docker image
       run: |
-        docker stop linktree:latest
+##        docker stop linktree
         docker build -t linktree:latest .
         docker run --rm -p 8501:8080 --name linktree linketree:latest
