@@ -26,4 +26,4 @@ COPY --from=build ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 
 COPY app ./app
 
-ENTRYPOINT ["stremalit", "run", "stremalit_app.py"]
+ENTRYPOINT ["streamlit", "run", "streamlit_app.py"]
