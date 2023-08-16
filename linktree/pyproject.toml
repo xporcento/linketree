@@ -1,16 +1,13 @@
 [tool.poetry]
-name = "link-tree"
+name = "linktree"
 version = "0.1.0"
 description = ""
-authors = ["Jhony Lima <114432490+Jhonylsab@users.noreply.github.com>"]
+authors = ["jhonylsab <114432490+Jhonylsab@users.noreply.github.com>"]
 readme = "README.md"
-packages = [{include = "link_tree"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
 streamlit = "^1.25.0"
-
-
 
 
 [build-system]
