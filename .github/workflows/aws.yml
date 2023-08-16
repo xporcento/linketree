@@ -27,6 +27,6 @@ jobs:
       
     - name: Build the Docker image
       run: |
-        docker stop linktree
+        docker stop linktree:latest
         docker build -t linktree:latest .
         docker run --rm -p 8501:8080 --name linktree linketree:latest
