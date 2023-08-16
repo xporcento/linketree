@@ -1,17 +1,19 @@
-
-name: Deploy to Amazon EC2
+name: Deploy anda Docker Image CI
 
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  deploy:
-    name: Deploy
+
+  build:
+
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: Checkout repository
       uses: actions/checkout@v3
 
     - name: Copiar arquivos com SSH
@@ -20,5 +22,11 @@ jobs:
         SSH_PRIVATE_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
         SOURCE: "././"
         REMOTE_HOST: "ec2-18-229-118-128.sa-east-1.compute.amazonaws.com"
-        REMOTE_USER: "ubuntu"
-        TARGET: "/home/ubuntu"
+        REMOTE_USER: "ec2-user"
+        TARGET: "/home/ec2-user"
+      
+    - name: Build the Docker image
+      run: |
+        docker stop linktree
+        docker build -t linktree:latest .
+        docker run --rm -p 8501:8080 --name linktree linketree:latest

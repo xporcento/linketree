@@ -1,18 +1,12 @@
 # The builder image, used to build the virtual environment
 FROM python:3.11-buster as builder
 
-RUN apt-get update && apt-get install -y git
-
 RUN pip install poetry==1.4.2
 
 ENV POETRY_NO_INTERACTION=1 \
     POETRY_VIRTUALENVS_IN_PROJECT=1\
     POETRY_VIRTUALENVS_CREATE=1 \
     POETRY_CACHE_DIR=/tmp/poetry_cache
-
-ENV HOST=0.0.0.0
-ENV LISTEN_PORT 8080
-EXPOSE 8080
 
 WORKDIR /app
 
