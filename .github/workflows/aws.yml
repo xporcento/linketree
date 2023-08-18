@@ -1,37 +1,38 @@
-name: Deploy to AWS
+name: Deploy anda Docker Image CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  deploy:
+
+  build:
+ 
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - name: Login to AWS ECR
-      uses: aws-actions/amazon-ecr-login@v1
-      with:
-        registry: i-07ceb9f6a4187cc41.dkr.ecr.sa-east-1.amazonaws.com/linktree:latest
-
-    - name: Build and push Docker image
+    - name: Copiar arquivos com SSH
+      uses: easingthemes/ssh-deploy@main
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        SOURCE: "./"
+        REMOTE_HOST: "ec2-18-228-4-121.sa-east-1.compute.amazonaws.com"
+        REMOTE_USER: "ec2-user"
+        TARGET: "/home/ec2-user"
+      
+    - name: Build the Docker image
       run: |
-        docker build -t linktree:latest .
-        docker tag linktree i-07ceb9f6a4187cc41.dkr.ecr.sa-east-1.amazonaws.com/linktree:latest
-        docker push linktree:latest
-
-    - name: SSH into AWS instance and update container
-      uses: appleboy/ssh-action@master
-      with:
-        host: "ec2-52-67-38-106.sa-east-1.compute.amazonaws.com"
-        username: "ec2-user"
-        key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        script: |
+        if docker ps | grep -q "linktree"; then
+          echo "O contêiner está em execução, parando..."
           docker stop linktree
-          docker rm linktree
-          docker pull linktree:latest
-          docker run -d -p 8501:8501 --name linktree i-07ceb9f6a4187cc41.dkr.ecr.sa-east-1.amazonaws.com/linktree:latest
+        else
+          echo "O contêiner não está em execução."
+        fi       
+        cd linktree
+        docker build -t linktree:latest .
+        docker run --rm -p 8501:8080 --name linktree linktree:latest
